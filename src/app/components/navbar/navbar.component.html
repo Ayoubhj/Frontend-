@@ -1,0 +1,191 @@
+ <!-- This example requires Tailwind CSS v2.0+ -->
+ <div class="relative bg-white font-body z-50">
+    <div class="max-w-6xl mx-auto px-2 sm:px-4">
+      <div
+        class="flex justify-between items-center border-b-2 border-gray-100 md:justify-start md:space-x-4"
+      >
+        <div class="flex justify-start lg:w-0 lg:flex-1">
+          <a  routerLink="" >
+            <span class="sr-only">Workflow</span>
+            <img class="h-16 w-auto sm:h-16" src="../assets/lp.png" alt="" />
+          </a>
+        </div>
+        <div (click)="toggle()" class="-mr-2 -my-2 md:hidden">
+          <button
+            type="button"
+            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
+          >
+            <span class="sr-only">Open menu</span>
+            <!-- Heroicon name: outline/menu -->
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="hidden md:flex space-x-10">
+          <a
+          routerLink=''
+            class="text-sm hover:bg-gray-50 rounded transition-all duration-400 text-gray-700 font-semibold px-4 py-4"
+          >
+            Home
+        </a>
+          <a
+          routerLink='shop'
+            class="text-sm font-semibold hover:bg-gray-50 rounded transition-all duration-400 text-gray-700 px-4 py-4"
+          >
+            Shop
+    </a>
+        </nav>
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <div v-if="!user">
+            <a routerLink='login' 
+              class="ml-8 whitespace-nowrap inline-flex items-center transition-all duration-400 text-white justify-center px-6 py-2 rounded border border-transparent shadow-sm text-sm font-bold hover:bg-gray-500 bg-black"
+            >
+              Login
+          </a>
+            <a 
+            routerLink='register'
+              class="ml-8 whitespace-nowrap inline-flex items-center justify-center transition-all duration-400 px-6 py-2 rounded border border-transparent shadow-sm text-sm font-bold text-black hover:bg-gray-200 bg-gray-50"
+            >
+              Register
+        </a>
+          </div>
+          <div>
+            <div v-if="user">
+              <button
+                (click)="toggledrop()"
+                class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                id="user-menu"
+                aria-haspopup="true"
+              >
+                <span class="sr-only">Open user menu</span>
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </button>
+            </div>
+            <!--
+            Profile dropdown panel, show/hide based on dropdown state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+            <div
+              *ngIf="!dropmenu"
+              class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Your Profile</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Settings</a
+              >
+              <a
+                
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Sign out</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+          Mobile menu, show/hide based on mobile menu state.
+
+          Entering: "duration-200 ease-out"
+            From: "opacity-0 scale-95"
+            To: "opacity-100 scale-100"
+          Leaving: "duration-100 ease-in"
+            From: "opacity-100 scale-100"
+            To: "opacity-0 scale-95"
+        -->
+    <div
+      *ngIf="!Dropdown"
+      class="relative top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+    >
+      <div
+        class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50"
+      >
+        <div class="pt-5 pb-6 px-5">
+          <div class="flex items-center justify-between">
+            <div class="-mr-2">
+              <button
+                (click)="toggle()"
+                type="button"
+                class="bg-white rounded-md p-2 inline-flex items-center justify-center hover:bg-gray-100 outline-none"
+              >
+                <span class="sr-only">Close menu</span>
+                <!-- Heroicon name: outline/x -->
+              </button>
+            </div>
+          </div>
+          <div class="mt-6">
+            <nav class="grid gap-y-8">
+              <a
+                to="/"
+                class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+              >
+                <!-- Heroicon name: outline/chart-bar -->
+
+                <span class="ml-3 text-base font-bold text-gray-900"> Home </span>
+            </a>
+
+              <a
+                to="/shop"
+                class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+              >
+                <!-- Heroicon name: outline/cursor-click -->
+
+                <span class="ml-3 text-base font-bold text-gray-900"> Products </span>
+            </a>
+            </nav>
+          </div>
+        </div>
+
+        <div>
+          <a
+          routerLink='register'
+            class="w-full flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-base font-semibold text-white bg-black"
+          >
+            Sign up
+        </a>
+          <p class="mt-6 text-center text-base font-medium text-gray-500">
+            Existing customer?
+            <a routerLink='login' class="text-black px-3 py-"> Sign in </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -15,10 +15,7 @@ const routes: Routes = [
      path: '',
      loadChildren : () => import('./routeuser/user-router/user-router.module').then(a => a.UserRouterModule)
   },
-  {
-    path: 'admin',
-    loadChildren : () => import('./Admin-panel/routeadmin/routeadmin.module').then(a => a.RouteadminModule)
-  },
+
   {
     path:"**",
     component:PageNotFoundComponent

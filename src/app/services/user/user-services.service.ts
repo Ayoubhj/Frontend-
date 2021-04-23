@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {User} from "../../Interface/user";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,26 @@ import {Observable} from "rxjs";
 export class UserServicesService {
 
   readonly url = "http://localhost:8000/api/user/";
-  readonly urla = "http://localhost:8000/api/admin/";
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private route : Router) { }
+
+  public correntuser : User;
+
+
+  UserData(){
+    if(this.isLoggedIn()){
+      this.getuser().subscribe(res => {
+          this.correntuser = res;
+      });
+    }
+  }
+
 
 
   login(user){
-    return this.http.post<User>(`${this.url}`+'login',user);
+      return this.http.post<User>(`${this.url}` + 'login', user);
   }
-  loginadmin(admin){
-    return this.http.post<User>(`${this.urla}`+'login',admin);
-  }
+
+
   facebookLogin(): Observable<any>{
     return this.http.get(`${this.url}`+'facebook/redirect');
   }
@@ -30,5 +41,21 @@ export class UserServicesService {
   }
   register(user){
     return this.http.post<User>(`${this.url}`+'register',user);
+  }
+
+  logout(){
+      localStorage.removeItem('token')
+      this.route.navigate(['']);
+  }
+
+  getuser(){
+    return this.http.get<User>(`${this.url}`+'user');
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+  isLoggedIn(): boolean {
+     return !!localStorage.getItem('token');
   }
 }

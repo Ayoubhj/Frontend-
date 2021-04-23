@@ -9,13 +9,15 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ShopComponent } from './views/shop/shop.component';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { OrderProductsComponent } from './views/order-products/order-products.component';
 import { FacebookpageComponent } from './views/facebookpage/facebookpage.component';
-import { HomepageComponent } from './views/homepage/homepage.component';
+import {TokenInterceptorService} from "./services/user/token-interceptor.service";
+
+
 
 
 
@@ -36,15 +38,22 @@ import { HomepageComponent } from './views/homepage/homepage.component';
     PageNotFoundComponent,
     OrderProductsComponent,
     FacebookpageComponent,
-    HomepageComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,29 +1,55 @@
 import { NgModule } from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 
 import {PageNotFoundComponent} from "./views/page-not-found/page-not-found.component";
-
-
-
-
-
-
-
+import {HomeComponent} from "./views/home/home.component";
+import {LoginComponent} from "./views/login/login.component";
+import {FacebookpageComponent} from "./views/facebookpage/facebookpage.component";
+import {RegisterComponent} from "./views/register/register.component";
+import {ProductDetailComponent} from "./views/product-detail/product-detail.component";
+import {OrderProductsComponent} from "./views/order-products/order-products.component";
+import {AuthService} from "./guard/auth.service";
+import {ShopComponent} from "./views/shop/shop.component";
 
 const routes: Routes = [
-  {
-     path: '',
-     loadChildren : () => import('./routeuser/user-router/user-router.module').then(a => a.UserRouterModule)
-  },
+      {
+        path:"",
+        component:HomeComponent,
+      },
+      {
+        path:"login",
+        component:LoginComponent
+      },
+      {
+        path:"api/user/facebook/callback",
+        component:FacebookpageComponent
+      },
+      {
+        path:"register",
+        component:RegisterComponent
+      },
+      {
+        path:"product-details/:id",
+        component:ProductDetailComponent
 
-  {
-    path:"**",
-    component:PageNotFoundComponent
-  },
+      },
+      {
+        path: 'product-details/:id/place-order',
+        component: OrderProductsComponent,
+        canActivate:[AuthService]
+      } ,
+      {
+        path:"shop",
+        component:ShopComponent
+      },
+      {
+        path: "**",
+        component: PageNotFoundComponent
+      }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{preloadingStrategy : PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

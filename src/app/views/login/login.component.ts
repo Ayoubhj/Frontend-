@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserServicesService } from 'src/app/services/user/user-services.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,15 +27,15 @@ export class LoginComponent implements OnInit {
     const data = this.FormLogin.value;
     await this.log.login(data).subscribe(
       (result:any)=> {
-         localStorage.setItem('token',result.access_token);
+         localStorage.setItem('token',result.token);
          this.route.navigate(['']);
       },
       error =>{
-        console.log('error')
         console.log(error)
       }
     )
   }
+
   facelogin(){
     this.log.facebookLogin().subscribe(res => {
       if(res.url){

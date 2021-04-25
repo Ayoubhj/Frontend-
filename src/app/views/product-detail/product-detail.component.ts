@@ -9,14 +9,15 @@ import {Product} from "../../Interface/product";
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit{
-  product: any  ;
+  products: Product  ;
 
   path : any = "http://localhost:8000/images/"
   constructor(private routeactive : ActivatedRoute,public prodserv : ProductsService ) {
     this.routeactive.paramMap.subscribe((params : ParamMap) => {
       if (params.get('id')){
         this.prodserv.getproduct(+params.get('id')).subscribe(res => {
-          this.product  = res;
+          this.products  = res;
+          console.log(res)
         });
       }
     });

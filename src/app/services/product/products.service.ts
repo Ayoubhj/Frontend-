@@ -18,19 +18,15 @@ export class ProductsService {
 
 
   getlastshoes(): any{
-      return this.http.get(`${this.url}` + 'lastshoes')
+      return this.http.get<Product[]>(`${this.url}` + 'lastshoes')
   }
   getproduct(id) : any {
-      return this.http.get(`${this.url}` + `getproduct/${id}`)
+      return this.http.get<Product>(`${this.url}` + `getproduct/${id}`)
   }
 
 
 
-  ViewProductDetails(product :any){
-      this.route.navigate(['/product-details',product.id], {
-          queryParams : {
-             name :product.title
-          }
-      });
+  ViewProductDetails(product :Product){
+      this.route.navigate(['/product-details',product.id]);
   }
 }

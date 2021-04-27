@@ -18,9 +18,22 @@ export class ShopComponent implements OnInit {
          this.categories = res;
 
     });
-    this.prodLoad.getlastshoes().subscribe( res => {
-      this.products = [...res.data]
-      console.log(this.products)
+
+    this.getallproducts();
+  }
+
+  ViewProductDetails(product :any){
+    this.prodLoad.ViewProductDetails(product);
+  }
+
+  getproductbycat(id): any {
+      this.catser.getproductbycat(id).subscribe( res => {
+            this.products = [...res.data]
+      });
+  }
+  getallproducts(){
+    this.prodLoad.getallproducts().subscribe( res => {
+      this.products = [...res]
     });
   }
 

@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
   clothes = "../assets/clothes.jpg";
   shoes = "../assets/shoes.jpg";
   watch = "../assets/watch.jpg";
-  products : Product[] = [];
+  productsshoes : Product[] = [];
+  productclothes :  Product[] = [];
+
   path : any = "http://localhost:8000/images/"
   constructor(public authuser : UserServicesService,public prodLoad : ProductsService,private route: Router) { }
 
@@ -25,8 +27,12 @@ export class HomeComponent implements OnInit {
     this.authuser.UserData();
 
     this.prodLoad.getlastshoes().subscribe( res => {
-          this.products = [...res.data]
-      console.log(this.products)
+          this.productsshoes = [...res.data]
+      console.log(this.productsshoes)
+    });
+    this.prodLoad.getlastclothes().subscribe( res => {
+      this.productclothes = [...res.data]
+      console.log(this.productclothes)
     });
   }
 

@@ -18,7 +18,7 @@
   </div>
 
 </div>
-<div   *ngIf="authuser.isLoggedIn()"  class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: url({{image2}})">
+<div   *ngIf="authuser.isLoggedIn()"  class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: linear-gradient(to bottom, #092147, #2e416a, #4f658f, #728ab6, #97b2de); ">
   <div >
     <img class="w-96 " src="../assets/lf.png" />
     <div>
@@ -41,7 +41,7 @@
         class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
 
       >
-        <div   *ngFor="let product of products" class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+        <div   *ngFor="let product of productsshoes" class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
           <div
             class="flex items-end justify-end h-56 w-full bg-cover"
             style="
@@ -49,7 +49,7 @@
               "
           >
             <button (click)="ViewProductDetails(product)"
-                    class="p-2 rounded bg-gray-700  font-semibold text-white mx-5 -mb-4 hover:bg-blue-900 focus:outline-none "
+                    style="background-color: #1a488e"       class="p-2 rounded font-semibold text-white mx-5 -mb-4 hover:bg-blue-900 focus:outline-none "
             >
               View Product
             </button>
@@ -66,22 +66,23 @@
       <div
         class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
       >
-        <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+        <div    *ngFor="let product of productclothes" class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
           <div
             class="flex items-end justify-end h-56 w-full bg-cover"
             style="
-                background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+                background-image: url({{path}}{{product.image}});
               "
           >
-            <button routerLink="product-details"
-                    class="p-2 rounded bg-gray-700  font-semibold text-white mx-5 -mb-4 hover:bg-blue-900 focus:outline-none "
+            <button
+              (click)="ViewProductDetails(product)"
+                 style="background-color: #1a488e"    class="p-2 rounded  font-semibold text-white mx-5 -mb-4 hover:bg-blue-900 focus:outline-none "
             >
               View Product
             </button>
           </div>
           <div class="px-5 py-3">
-            <h3 class="text-gray-700 uppercase">Classic watch</h3>
-            <span class="text-gray-500 mt-2">$12</span>
+            <h3 class="text-gray-700 uppercase">{{product.title}}</h3>
+            <span class="text-gray-500 mt-2">${{product.price}}</span>
           </div>
         </div>
       </div>

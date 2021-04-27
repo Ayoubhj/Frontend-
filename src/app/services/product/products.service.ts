@@ -29,4 +29,11 @@ export class ProductsService {
   ViewProductDetails(product :Product){
       this.route.navigate(['/product-details',product.id]);
   }
+
+  getallproducts(): any{
+    return this.http.get<Product[]>(`${this.url}` + 'getallproducts')
+  }
+  getlastclothes(): any{
+    return this.http.get<Product[]>(`${this.url}` + 'getlastclothes')
+  }
 }

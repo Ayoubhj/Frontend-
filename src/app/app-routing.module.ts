@@ -7,9 +7,11 @@ import {LoginComponent} from "./views/login/login.component";
 import {FacebookpageComponent} from "./views/facebookpage/facebookpage.component";
 import {RegisterComponent} from "./views/register/register.component";
 import {ProductDetailComponent} from "./views/product-detail/product-detail.component";
-import {OrderProductsComponent} from "./views/order-products/order-products.component";
+
 import {AuthService} from "./guard/auth.service";
 import {ShopComponent} from "./views/shop/shop.component";
+import { OrderProductComponent } from './views/order-product/order-product.component';
+import { OrderDetailsComponent } from './views/order-details/order-details.component';
 
 const routes: Routes = [
       {
@@ -34,14 +36,19 @@ const routes: Routes = [
 
       },
       {
-        path: 'product-details/:id/place-order',
-        component: OrderProductsComponent,
+        path: 'placeorder',
+        component: OrderProductComponent,
         canActivate:[AuthService]
       } ,
       {
         path:"shop",
         component:ShopComponent
       },
+      {
+        path:"order-details",
+        component:OrderDetailsComponent
+      },
+    
       {
         path: "**",
         component: PageNotFoundComponent

@@ -70,8 +70,9 @@
               <button
                 (click)="toggledrop()"
 
-                class="bg-gray-900 p-2 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                class=" p-2 flex text-sm rounded-full focus:outline-none focus:ring-white"
                 id="user-menu"
+                style="background-color: #0E254C;"
                 aria-haspopup="true"
               >
                 <span class="sr-only">Open user menu</span>
@@ -106,11 +107,10 @@
                 >Your Profile</a
               >
               <a
-                href="#"
-
+                routerLink="order-details"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
-                >Settings</a
+                >Your Orders</a
               >
               <a
 
@@ -181,7 +181,7 @@
           </div>
         </div>
 
-        <div>
+        <div *ngIf="!authuser.isLoggedIn()">
           <a
           routerLink='register'
             class="w-full flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-base font-semibold text-white bg-black"
@@ -192,6 +192,17 @@
             Existing customer?
             <a routerLink='login' class="text-black px-3 py-"> Sign in </a>
           </p>
+        </div>
+        <div *ngIf="authuser.isLoggedIn()">
+          <a
+          (click)="authuser.logout()"
+            class="w-full flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-base font-semibold text-white"
+            style="background-color: #0E254C;"
+          >
+
+            Log out
+        </a>
+   
         </div>
       </div>
     </div>

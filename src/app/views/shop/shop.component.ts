@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/Interface/product';
 import {CategoriesService} from "../../services/categories/categories.service";
 import {ProductsService} from "../../services/product/products.service";
 
@@ -9,7 +10,9 @@ import {ProductsService} from "../../services/product/products.service";
 })
 export class ShopComponent implements OnInit {
   categories :any ;
-  products :any;
+  products : Product[] = [];
+  searchText  =""
+  resultproduct :any;
   path : any = "http://localhost:8000/images/"
   constructor(private catser :CategoriesService,private prodLoad : ProductsService) { }
 
@@ -33,8 +36,12 @@ export class ShopComponent implements OnInit {
   }
   getallproducts(){
     this.prodLoad.getallproducts().subscribe( res => {
-      this.products = [...res]
+      this.resultproduct =  this.products = [...res]
     });
   }
-
+  
+  livesearch(){
+    console.log(this.searchText)
+    this.resultproduct = this.products.filter((product) => product.title.toLowerCase().includes(this.searchText.toLowerCase())  )
+  }
 }

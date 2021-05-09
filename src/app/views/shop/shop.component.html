@@ -4,24 +4,17 @@
             <div class="flex items-center   justify-between">
                 <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Products</h1>
                 <div class="pt-2 m-2 relative mx-auto hidden sm:flex text-gray-600">
-            <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-60 rounded-lg text-sm focus:outline-none"
-       type="search" name="search" placeholder="Search">
-         <button type="submit" class="absolute right-0 top-0 outline-none  mt-5 mr-4">
-
-    </button>
+            <input  (keyup)="livesearch()"  [(ngModel)]="searchText" class="border-2 border-gray-300 bg-white h-10 px-5 pr-60 rounded-lg text-sm focus:outline-none"
+                type="search" name="search" placeholder="Search">
+         
   </div>
-                <div>
-                    <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option>Latest</option>
-                        <option>Last Week</option>
-                    </select>
-                </div>
+             
             </div>
 
           <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto">
               <div class="flex flex-wrap -m-4">
-                <div  *ngFor="let product of products" class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <div  *ngFor="let product of resultproduct" class="lg:w-1/4 md:w-1/2 p-4 w-full">
                   <a class="block relative h-48 rounded overflow-hidden">
                     <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{path}}{{product.image}}">
                   </a>

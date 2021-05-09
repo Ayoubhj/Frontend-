@@ -10,12 +10,15 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ShopComponent } from './views/shop/shop.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
-import { OrderProductsComponent } from './views/order-products/order-products.component';
+
 import { FacebookpageComponent } from './views/facebookpage/facebookpage.component';
 import {TokenInterceptorService} from "./services/user/token-interceptor.service";
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { OrderProductComponent } from './views/order-product/order-product.component';
+import { OrderDetailsComponent } from './views/order-details/order-details.component';
 
 
 
@@ -36,8 +39,11 @@ import {TokenInterceptorService} from "./services/user/token-interceptor.service
     ShopComponent,
     ProductDetailComponent,
     PageNotFoundComponent,
-    OrderProductsComponent,
+ 
     FacebookpageComponent,
+      OrderProductComponent,
+      OrderDetailsComponent,
+     
 
   ],
   imports: [
@@ -45,7 +51,8 @@ import {TokenInterceptorService} from "./services/user/token-interceptor.service
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {

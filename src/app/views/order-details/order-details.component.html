@@ -1,0 +1,45 @@
+<div class="overflow-x-auto">
+        <div class="min-w-screen min-h-screen bg-gray-100 flex  justify-center bg-gray-100 font-sans overflow-hidden">
+            <div class="w-full lg:w-5/6">
+                <div class="bg-white shadow-md rounded my-6">
+                    <table class="min-w-max w-full table-auto" >
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left">Id</th>
+                                <th class="py-3 px-6 text-left">Product_id</th>
+                                <th class="py-3 px-6 text-center">Size </th>
+                                <th class="py-3 px-6 text-center">Price</th>
+                                <th class="py-3 px-6 text-center">Quantity</th>
+                                <th class="py-3 px-6 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let order of orders" class="text-gray-600 text-sm font-light">
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                     {{order.id}}
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    {{order.products.title}}
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    {{order.size}}
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    {{order.products.price}}
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    {{order.quantity}}
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <span style="color: red;" *ngIf="order.status == 0">Not Delivered</span>
+                                    <span   style="color: green;"  *ngIf="order.status == 1"> Delivered</span>
+                                </td>
+                            </tr>
+                       
+                      
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

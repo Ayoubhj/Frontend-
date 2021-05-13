@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { EMPTY } from 'rxjs';
 import { Product } from 'src/app/Interface/product';
 import { ProductsService } from 'src/app/services/product/products.service';
 import { UserServicesService } from 'src/app/services/user/user-services.service';
@@ -18,8 +19,8 @@ export class OrderProductComponent implements OnInit {
    result : any;
    FormOrder :FormGroup;
    path : any = "http://localhost:8000/images/";
-
-  
+   error;
+   success ;
   constructor(private Activeroute: ActivatedRoute,private fb : FormBuilder,public userserv : UserServicesService,private prodserv :ProductsService, private route : Router) {
    }
 
@@ -45,6 +46,9 @@ export class OrderProductComponent implements OnInit {
                }]
             })
         },
+        onAprrove : (res) => {
+           console.log(res)
+        }
        })
        .render( this.paypalElement.nativeElement );
        
@@ -53,7 +57,7 @@ export class OrderProductComponent implements OnInit {
   crateForm(){
     this.FormOrder = this.fb.group({
       user_id : [Number(this.user_id),Validators.required],
-      firstname :["",Validators.required],
+      firstname :["",Validators.required,Validators.toString],
       lastname :["",Validators.required],
       adresse :["",Validators.required],
       city :["",Validators.required],
@@ -65,22 +69,30 @@ export class OrderProductComponent implements OnInit {
     });
      
   }
+  
+  
+ async submit(){
+   
+        const data = this.FormOrder.value
 
-  submit(){
-     const data = this.FormOrder.value
-
-
-     this.prodserv.placeOreder(data).subscribe(
-       res => {
-          this.result = res
-          
-          console.log(this.result.message)
-     });
-
-     
+        await  this.prodserv.placeOreder(data).subscribe(
+        res => {
+           this.result = res
+           this.success = "information has saved"
+        },  
+        error =>{
+           this.error = "fill the fields please"
+       }
+      );
+      
+ 
   }
 
-  
+  hide(){
+    let alert = document.getElementById("alert")
+    alert.style.display = "none"
+  }
+
 
 
 }

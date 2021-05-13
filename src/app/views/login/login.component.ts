@@ -11,6 +11,7 @@ import { UserServicesService } from 'src/app/services/user/user-services.service
 })
 export class LoginComponent implements OnInit {
   FormLogin: FormGroup;
+  error : String;
   constructor(private fb:FormBuilder,private log: UserServicesService,private route : Router) {
     this.FormLogin = this.fb.group({
       email :["",Validators.compose([Validators.required,Validators.email])],
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
          this.route.navigate(['']);
       },
       error =>{
-        console.log(error)
+      this.error =  error.error.message
       }
     )
   }
@@ -45,6 +46,10 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+ 
+  hide(){
+    let alert = document.getElementById("alert")
+    alert.style.display = "none"
+  }
 
 }

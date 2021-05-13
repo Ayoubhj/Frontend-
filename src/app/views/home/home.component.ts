@@ -29,11 +29,11 @@ export class HomeComponent implements OnInit {
 
     this.prodLoad.getlastshoes().subscribe( res => {
           this.productsshoes = [...res.data]
-      console.log(this.productsshoes)
+   
     });
     this.prodLoad.getlastclothes().subscribe( res => {
       this.productclothes = [...res.data]
-      console.log(this.productclothes)
+    
     });
   }
 

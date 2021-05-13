@@ -31,7 +31,7 @@ export class ShopComponent implements OnInit {
 
   getproductbycat(id): any {
       this.catser.getproductbycat(id).subscribe( res => {
-            this.products = [...res.data]
+        this.resultproduct =  this.products = [...res.data]
       });
   }
   getallproducts(){
@@ -41,7 +41,7 @@ export class ShopComponent implements OnInit {
   }
   
   livesearch(){
-    console.log(this.searchText)
+   
     this.resultproduct = this.products.filter((product) => product.title.toLowerCase().includes(this.searchText.toLowerCase())  )
   }
 }

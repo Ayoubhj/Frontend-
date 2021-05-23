@@ -13,6 +13,7 @@ import {ShopComponent} from "./views/shop/shop.component";
 import { OrderProductComponent } from './views/order-product/order-product.component';
 import { OrderDetailsComponent } from './views/order-details/order-details.component';
 
+
 const routes: Routes = [
       {
         path:"",

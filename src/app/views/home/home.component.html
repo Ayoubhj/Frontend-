@@ -1,7 +1,19 @@
-<div  *ngIf="!authuser.isLoggedIn()" class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: url({{image}})">
+<div  *ngIf="!authuser.isLoggedIn()" class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: linear-gradient(to right bottom, #27313f, #304a66, #346591, #2f82bd, #12a0eb);">
   <div >
     <img class="w-96 " src="../assets/lf.png" />
     <div>
+      <div class="rocket">
+        <img class="w-96 " src="../assets/rocket.png" /> 
+      </div>
+      <div class="earth hidden sm:block">
+        <img class="w-96 " src="../assets/earth.png" /> 
+      </div>
+      <div class="mars hidden sm:block">
+        <img class="w-96 " src="../assets/mars.png" /> 
+      </div>
+      <div class="smoke ">
+        <img class="w-96 " src="../assets/smoke.png" /> 
+      </div>
       <a
         routerLink="shop"
         class="border-2 px-10 py-2 rounded text-decoration-none hover:text-white cursor-pointer border-black font-semibold bg-black text-white focus:outline-none focus:border-black"
@@ -18,9 +30,21 @@
   </div>
 
 </div>
-<div   *ngIf="authuser.isLoggedIn()"  class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: linear-gradient(to bottom, #092147, #2e416a, #4f658f, #728ab6, #97b2de); ">
+<div   *ngIf="authuser.isLoggedIn()"  class="flex-1 flex items-center justify-center hir bg-black h-screen img " style="background-image: linear-gradient(to right bottom, #27313f, #304a66, #346591, #2f82bd, #12a0eb); ">
   <div >
     <img class="w-96 " src="../assets/lf.png" />
+    <div class="rocket">
+      <img class="w-96 " src="../assets/rocket.png" /> 
+    </div>
+    <div class="earth hidden sm:block">
+      <img class="w-96 " src="../assets/earth.png" /> 
+    </div>
+    <div class="mars hidden sm:block">
+      <img class="w-96 " src="../assets/mars.png" /> 
+    </div>
+    <div class="smoke ">
+      <img class="w-96 " src="../assets/smoke.png" /> 
+    </div>
     <div>
 
       <a

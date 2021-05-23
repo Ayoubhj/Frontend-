@@ -28,6 +28,7 @@ import { OrderDetailsComponent } from './views/order-details/order-details.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { OrderDetailsComponent } from './views/order-details/order-details.compo
     FacebookpageComponent,
       OrderProductComponent,
       OrderDetailsComponent,
+   
      
 
   ],
